@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Camarões</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container mt-3">
+        <!-- Botão Voltar -->
+        <div class="d-flex justify-content-end mb-2">
+            <button id="botaoVoltar" class="btn btn-secondary">Voltar</button>
+        </div>
+
+        <!-- Título -->
+        <h1 class="text-center mt-4">Lista de Camarões</h1>
+
+        <!-- Tabela de Camarões Regulares -->
+        <table class="table table-bordered text-center">
+            <thead>
+                <tr>
+                    <th>Código Completo</th>
+                    <th>Descrição</th>
+                </tr>
+            </thead>
+            <tbody id="tabelaProdutos">
+                <!-- Os dados serão preenchidos dinamicamente -->
+            </tbody>
+        </table>
+
+        <!-- Tabela de Camarões IN NATURA -->
+        <table class="table table-bordered text-center">
+            <h1 class="text-center mt-4">Lista de Camarões IN NATURA</h1>
+            <table class="table table-bordered text-center">
+                <thead>
+                    <tr>
+                        <th>Código Completo</th>
+                        <th>Descrição</th>
+                    </tr>
+                </thead>
+                <tbody id="tabelaProdutosInNatura">
+                    <!-- Conteúdo preenchido dinamicamente -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- Script para funcionalidades -->
+    <script src="api.js"></script>
+    <script>
+        // Botão Voltar
+        document.getElementById("botaoVoltar").addEventListener("click", () => {
+            window.location.href = "index.html";
+        });
+
+        // Chamar a função para carregar os camarões ao abrir a página
+        window.onload = () => {
+            carregarCamaroes();
+            carregarProdutosInNatura();
+        };
+    </script>
+</body>
+</html>

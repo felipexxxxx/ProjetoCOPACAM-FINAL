@@ -1,0 +1,135 @@
+/********** Template CSS **********/
+:root {
+  --primary: #1a237e;
+  --secondary: #ffc107;
+  --light: #eceff1;
+  --dark: #14141f;
+}
+.copiar-botao-container {
+  text-align: right; /* Alinha o botão à direita */
+  margin-top: 10px; /* Adiciona um pequeno espaçamento superior */
+}
+#botaoVoltar {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+.me-2 {
+  margin-right: 0.5rem; /* Ajuste o valor conforme necessário */
+}
+#verCamaroes {
+  width: 100%; /* O botão ocupará o mesmo tamanho do container */
+  text-align: center; /* Centraliza o texto dentro do botão */
+
+ 
+}
+/* Garantir que todas as tabelas tenham o mesmo estilo */
+table {
+  width: 100%; /* Mesma largura para todas as tabelas */
+  border-collapse: collapse; /* Colapsar bordas para uniformidade */
+  margin-top: 20px;
+}
+
+thead {
+  background-color: #343a40; /* Cor de fundo consistente */
+  color: #fff; /* Cor do texto */
+}
+
+th, td {
+  padding: 10px; /* Espaçamento interno */
+  text-align: center; /* Texto centralizado */
+  border: 1px solid #dee2e6; /* Borda consistente */
+  font-size: 16px; /* Tamanho da fonte consistente */
+}
+
+tbody tr:nth-child(even) {
+  background-color: #f8f9fa; /* Alternância de cores nas linhas */
+}
+
+tbody tr:nth-child(odd) {
+  background-color: #fff; /* Fundo branco para linhas ímpares */
+}
+
+/* Espaçamento adicional entre tabelas */
+#tabelaProdutosInNaturaContainer {
+  margin-top: 40px;
+}
+
+body {
+  background-color: #f8f9fa; /* Fundo branco suave */
+  color: #212529; /* Texto em preto escuro */
+  font-size: 0.9rem; /* Reduz o tamanho da fonte para compactar o conteúdo */
+  margin-bottom: 50px;
+}
+.form-control, .btn {
+  padding: 0.25rem 0.5rem; /* Reduz o padding dos inputs e botões */
+}
+.input-group {
+  flex-wrap: nowrap; /* Garante que os elementos do input-group fiquem na mesma linha */
+}
+.dropdown-menu {
+  font-size: 0.9rem; /* Reduz o tamanho da fonte do dropdown */
+}
+table {
+  width: 100%;
+  max-width: 90%; /* Reduz o tamanho da tabela em relação à tela */
+  margin: 0 auto; /* Centraliza a tabela */
+}
+
+  .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+  }
+  
+  form#descricaoForm .form-control {
+      width: 95%; /* Faz com que as caixas fiquem quase do tamanho da tabela */
+      height: 40px; /* Define uma altura uniforme para todas as caixas */
+      font-size: 1rem; /* Ajusta o tamanho do texto */
+      margin: 0 auto; /* Centraliza as caixas */
+      display: block; /* Garante alinhamento correto */
+  }
+  
+  form#descricaoForm .input-group {
+      width: 95%; /* Aplica o mesmo tamanho para grupos de input */
+      margin: 0 auto; /* Centraliza os grupos */
+  }
+  
+  form#descricaoForm label {
+      display: block; /* Mantém o label acima das caixas */
+      margin-bottom: 0.1rem; /* Espaço entre o label e a caixa */
+      font-size: 0.9rem; /* Ajusta o tamanho do texto do label */
+      text-align: left; /* Alinha o texto no canto superior esquerdo */
+  }
+  
+  .table {
+      max-width: 100%; /* Mantém a tabela responsiva */
+      margin: 0 auto;
+  }
+  .copiar-botao-container {
+      display: flex;
+      justify-content: flex-end; /* Alinha o botão à direita */
+      margin-top: 10px; /* Espaçamento entre a tabela e o botão */
+  }
+  #tabelaDescricao, #tabelaDescricaoCompleta {
+    margin-top: 10px;
+    background-color: #f9f9f9; /* Branco suave */
+}
+
+  
+.fw-medium {
+  font-weight: 600 !important;
+}
+
+.fw-semi-bold {
+  font-weight: 700 !important;
+}
+
+.input-group .form-control {
+  width: 50%; /* Faz com que cada campo ocupe metade da largura */
+  margin-right: 5px; /* Espaçamento entre os campos */
+}
+
+.input-group .form-control:last-child {
+  margin-right: 0; /* Remove o espaçamento no último campo */
+}
