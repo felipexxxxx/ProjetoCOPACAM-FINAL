@@ -5,5 +5,7 @@ CREATE TABLE produto_in_natura (
     apresentacao VARCHAR(50) NOT NULL,
     gramatura CHAR(3) NOT NULL,
     descricao TEXT NOT NULL,
-    data_insercao DATETIME NOT NULL
+    data_insercao DATETIME NOT NULL,
+      created_by BIGINT NOT NULL,
+    FOREIGN KEY (created_by) REFERENCES users(id)
 );

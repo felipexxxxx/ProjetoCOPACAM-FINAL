@@ -9,6 +9,10 @@
 </head>
 <div class="container mt-5">
     <h1 class="text-center">Tabela de Criação de Referências e Descrições de Produtos</h1>
+    <div class="d-flex justify-content-end mb-2">
+        <button id="botaoSair" class="btn btn-secondary">Sair</button>
+    </div>
+    
         <div class="d-flex justify-content-start mb-2">
             <div class="text-center mt-3">
                 <a href="https://drive.google.com/file/d/1Nc0TRis1VYwwOObznrAcTwhy7qj5Acr8/preview" target="_blank" class="btn btn-secondary">
@@ -255,6 +259,22 @@
         }
 
 
+        
+    </script>
+    <script>
+        document.getElementById("botaoSair")?.addEventListener("click", () => {
+            const confirmacao = confirm("Tem certeza de que deseja sair?");
+            if (confirmacao) {
+                // Remove o token do localStorage
+                localStorage.removeItem("token");
+        
+                // Exibe uma mensagem de saída bem-sucedida
+                alert("Você saiu com sucesso!");
+        
+                // Redireciona o usuário para a página de login
+                window.location.href = "login.html";
+            }
+        });
         
     </script>
 

@@ -14,13 +14,33 @@
   top: 20px;
   left: 20px;
 }
+#botaoSair {
+  position: absolute;
+  top: 20px;
+  right: 20px; /* Move para a direita */
+  background-color: rgb(159, 0, 0);
+  padding: 12px 24px;
+  font-size: 16px;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  border: none;
+}
+
+
 .me-2 {
   margin-right: 0.5rem; /* Ajuste o valor conforme necessário */
 }
 #verCamaroes {
   width: 100%; /* O botão ocupará o mesmo tamanho do container */
   text-align: center; /* Centraliza o texto dentro do botão */
-
+  body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f8f9fa;
+}
  
 }
 /* Garantir que todas as tabelas tenham o mesmo estilo */
@@ -133,3 +153,4 @@ table {
 .input-group .form-control:last-child {
   margin-right: 0; /* Remove o espaçamento no último campo */
 }
+

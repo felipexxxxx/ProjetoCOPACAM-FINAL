@@ -36,11 +36,12 @@ public class SecurityConfig {
                 .cors(Customizer.withDefaults())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers(HttpMethod.POST, "/auth/register").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/user").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/user/login").permitAll()
                         .requestMatchers(HttpMethod.GET, "/produtos").authenticated()
-                        .requestMatchers(HttpMethod.POST, "/produtos").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.POST, "/produtos/natura").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/produtos/natura").authenticated()
+                        .requestMatchers(HttpMethod.POST, "/produtos").hasAuthority("ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/produtos/natura").hasAuthority("ADMIN")
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class);
