@@ -11,7 +11,7 @@ const especieMap = { "01": "CAM CINZA" };
         "8": "DESC PED TAIL ON"
     };
     const estadoMap = { "0": "CRU", "1": "COZ" };
-    const condicaoMap = { "100": "CONG IQF", "110": "CONG IQF10", "115": "CONG IQF15", "120": "CONG IQF20", "200": "CONG BLOCO", "210": "CONG BLOCO10", "215": "CONG BLOCO15", "220": "CONG BLOCO20"  };
+    const condicaoMap = { "0": "CONG IQF", "1": "CONG IQF1", "2": "CONG IQF2", "3": "CONG IQF3"};
     const pacoteMap = {
         "05000": "5KG",
         "01000": "1KG",

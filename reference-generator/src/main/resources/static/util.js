@@ -51,7 +51,7 @@ function formatarPecasPorPacote(minima, maxima) {
     // Verifica se o valor mínimo é menor que o máximo
     if (inicio < fim) {
         // Retorna a descrição no formato correto
-        return `${inicio} a ${fim} `;
+        return `${inicio} A ${fim} `;
     }
 
     return "Inválido"; // Retorna inválido se a validação falhar
