@@ -42,6 +42,7 @@ public class ProdutoService {
             produtoDTO.getClassificacao(),
             produtoDTO.getPacote(),
             produtoDTO.getCaixa(),
+            produtoDTO.getEmbalagem(),
             produtoDTO.getDescricao(),
             user,
             null
@@ -89,7 +90,7 @@ public class ProdutoService {
 
     private String gerarCodigoCompletoRegular(ProdutoDTO dto) {
         return String.format(
-            "%s %s %s %s %s %s %s %s",
+            "%s %s %s %s %s %s %s %s %s",
             dto.getEspecie(),
             dto.getApresentacao(),
             dto.getEstado(),
@@ -97,7 +98,9 @@ public class ProdutoService {
             dto.getPecas() != null ? dto.getPecas() : "",
             dto.getClassificacao() != null ? dto.getClassificacao() : "",
             dto.getPacote() != null ? dto.getPacote() : "",
-            dto.getCaixa() != null ? dto.getCaixa() : ""
+            dto.getCaixa() != null ? dto.getCaixa() : "",
+            dto.getEmbalagem() != null ? dto.getEmbalagem() : ""
+            
         ).trim();
     }
 
@@ -106,7 +109,7 @@ public class ProdutoService {
         gramatura = gramatura.length() > 3 ? gramatura.substring(0, 3) : gramatura; // Limita a 3 dígitos
         gramatura = String.format("%03d", Integer.parseInt(gramatura)); // Preenche com zeros à esquerda
         return String.format(
-            "%s 0 00000000000000000000 %s",
+            "%s 0 0000000000000 %s",
             dto.getEspecie(),
             gramatura
         ).trim();

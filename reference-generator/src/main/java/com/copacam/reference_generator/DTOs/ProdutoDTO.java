@@ -15,6 +15,7 @@ public class ProdutoDTO {
     private String classificacao;
     private String pacote;
     private String caixa;
+    private String embalagem;
     private String descricao;
     private LocalDateTime dataInsercao;
 }

@@ -12,7 +12,7 @@ function AtualizarTabelaReferencia() {
     let codigoCompleto;
 
     if (apresentacaoInput === "0") { // "IN NATURA" selecionado
-        codigoCompleto = `${especieInput} ${apresentacaoInput} 00000000000000000000 ${gramaturaInput}`; // Código de 28 dígitos
+        codigoCompleto = `${especieInput} ${apresentacaoInput} 0000000000000 ${gramaturaInput}`; // Código de 28 dígitos
 
         // Preencher valores na tabela IN NATURA
         const tabelaInNaturaBody = document.getElementById("tabelaDescricaoInNatura");
@@ -45,8 +45,9 @@ function AtualizarTabelaReferencia() {
         );
         const pacoteInput = Object.keys(pacoteMap).find(key => pacoteMap[key] === document.getElementById("descricaoPacote").value) || "-";
         const caixaInput = Object.keys(caixaMap).find(key => caixaMap[key] === document.getElementById("descricaoCaixa").value) || "-";
+        const embalagemInput = Object.keys(embalagemMap).find(key => embalagemMap[key] === document.getElementById("descricaoEmbalagem").value) || "-";
 
-        codigoCompleto = `${especieInput} ${apresentacaoInput} ${estadoInput} ${condicaoInput} ${pecasCodigo} ${classificacaoCodigo} ${pacoteInput} ${caixaInput}`;
+        codigoCompleto = `${especieInput} ${apresentacaoInput} ${estadoInput} ${condicaoInput} ${classificacaoCodigo} ${pacoteInput} ${caixaInput} ${embalagemInput}`; 
 
         // Preencher valores na tabela original
         const tabelaOriginalBody = document.getElementById("tabelaDescricao");
@@ -56,10 +57,10 @@ function AtualizarTabelaReferencia() {
                 <td>${apresentacaoInput}</td>
                 <td>${estadoInput}</td>
                 <td>${condicaoInput}</td>
-                <td>${pecasCodigo}</td>
                 <td>${classificacaoCodigo}</td>
                 <td>${pacoteInput}</td>
                 <td>${caixaInput}</td>
+                <td>${embalagemInput}</td>
                 <td>${codigoCompleto}</td>
             </tr>
         `;
@@ -107,7 +108,8 @@ function AtualizarTabelaDescricaoCompleta() {
         const classificacaoCodigo = formatarClassificacao(classificacaoMinimaInput, classificacaoMaximaInput);
         const caixa = formatarCaixa(caixaInput);
         const pacote = formatarPacote(pacoteInput); // Garante que somente códigos válidos sejam formatados
-        descricaoCompleta = `${especie} ${apresentacao} ${estado} ${condicao}  ${pecasCodigo} ${classificacaoCodigo} ${pacote} ${caixa}`;
+        const embalagem = document.getElementById("descricaoEmbalagem").value || "Inválido";
+        descricaoCompleta = `${especie} ${apresentacao} ${estado} ${condicao}  ${pecasCodigo} ${classificacaoCodigo} ${pacote} ${caixa} ${embalagem}`;
     }
 
     // Atualiza a nova tabela de descrição completa

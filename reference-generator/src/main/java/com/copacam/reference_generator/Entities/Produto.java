@@ -28,6 +28,7 @@ public class Produto {
     private String classificacao;
     private String pacote;
     private String caixa;
+    private String embalagem;
     private String descricao;
 
     @ManyToOne(optional = false)

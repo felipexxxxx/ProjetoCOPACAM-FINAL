@@ -9,8 +9,9 @@ CREATE TABLE produto (
     classificacao VARCHAR(20),
     pacote VARCHAR(20),
     caixa VARCHAR(20),
+    embalagem VARCHAR(20),
     descricao TEXT NOT NULL,
     data_insercao DATETIME NOT NULL,
-      created_by BIGINT NOT NULL,
+    created_by BIGINT NOT NULL,
     FOREIGN KEY (created_by) REFERENCES users(id)
 );

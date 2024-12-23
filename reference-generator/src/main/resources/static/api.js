@@ -20,6 +20,7 @@ document.getElementById("criarProduto")?.addEventListener("click", async () => {
         );
         const pacote = Object.keys(pacoteMap).find(key => pacoteMap[key] === document.getElementById("descricaoPacote")?.value);
         const caixa = Object.keys(caixaMap).find(key => caixaMap[key] === document.getElementById("descricaoCaixa")?.value);
+        const embalagem = Object.keys(embalagemMap).find(key => embalagemMap[key] === document.getElementById("descricaoEmbalagem")?.value);
         const descricao = document.getElementById("tabelaDescricaoCompleta")?.innerText || "";
 
         // Validação para garantir que todos os campos sejam numéricos
@@ -31,7 +32,9 @@ document.getElementById("criarProduto")?.addEventListener("click", async () => {
             pecas,
             classificacao,
             pacote,
-            caixa
+            caixa,
+            embalagem
+
         ];
 
         const camposInvalidos = camposNumericos.some(campo => campo === undefined || isNaN(campo) || campo.trim() === "");
@@ -42,7 +45,7 @@ document.getElementById("criarProduto")?.addEventListener("click", async () => {
         }
 
         // Geração do código completo com padding para garantir o tamanho fixo
-        const codigoCompleto = `${especie} ${apresentacao} ${estado} ${tipoConservacao} ${pecas.padStart(8, '0')} ${classificacao.padStart(6, '0')} ${pacote.padStart(5, '0')} ${caixa.padStart(2, '0')}`;
+        const codigoCompleto = `${especie} ${apresentacao} ${estado} ${tipoConservacao} ${classificacao.padStart(6, '0')} ${pacote.padStart(5, '0')} ${caixa.padStart(2, '0')}`;
 
         const produto = {
             codigoCompleto,
@@ -50,10 +53,10 @@ document.getElementById("criarProduto")?.addEventListener("click", async () => {
             apresentacao,
             estado,
             tipoConservacao,
-            pecas,
             classificacao,
             pacote,
             caixa,
+            embalagem,
             descricao
         };
 
@@ -109,7 +112,7 @@ document.getElementById("criarProdutoInNatura")?.addEventListener("click", async
 
         gramatura = gramatura.toString().padStart(3, '0');
         // Gerar o código completo com base na lógica específica
-        const codigoCompleto = `${especie} ${apresentacao} ${"0".repeat(24)} ${gramatura.padStart(3, '0')}`;
+        const codigoCompleto = `${especie} ${apresentacao} ${"0".repeat(16)} ${gramatura.padStart(3, '0')}`;
 
         // Criar o objeto do produto
         const produtoInNatura = { codigoCompleto, especie, apresentacao, gramatura, descricao };

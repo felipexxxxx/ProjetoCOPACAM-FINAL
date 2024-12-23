@@ -24,7 +24,10 @@ const especieMap = { "01": "CAM CINZA" };
         "08":"8KG",
         "06":"6KG"
     }
-
+    const embalagemMap = {
+        "1": "COPACAM",
+        "2": "MARCHEF"
+    }
 
 // Função para configurar os filtros dinamicamente
 function preencherFiltros() {
@@ -34,6 +37,7 @@ function preencherFiltros() {
     preencherFiltroDinamico("dropdownCondicao", condicaoMap, "descricaoCondicao");
     preencherFiltroDinamico("dropdownPacote", pacoteMap, "descricaoPacote");
     preencherFiltroDinamico("dropdownCaixa", caixaMap, "descricaoCaixa");
+    preencherFiltroDinamico("dropdownEmbalagem", embalagemMap, "descricaoEmbalagem");
 }
 
 // Função genérica para preencher os filtros

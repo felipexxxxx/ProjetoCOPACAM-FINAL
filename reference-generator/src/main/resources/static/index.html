@@ -111,6 +111,17 @@
          
         </div>
         
+        <!-- Tipo de embalagem -->
+        <div class="mb-3">
+            <label for="descricaoEmbalagem" class="form-label">Tipo de embalagem:</label>
+            <div class="input-group">
+                <input type="text" id="descricaoEmbalagem" class="form-control" placeholder="Tipo de embalagem" readonly>
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Opções</button>
+                <ul class="dropdown-menu" id="dropdownEmbalagem">
+                    <!-- Dinamicamente preenchido -->
+                </ul>
+            </div>
+        </div>
           
      
     </form>
@@ -129,10 +140,10 @@
                     <th>Apresentação</th>
                     <th>Estado</th>
                     <th>Tipo de Conservação</th>
-                    <th>Peças p/pacote</th>
                     <th>Classificação</th>
                     <th>Pacote (g)</th>
                     <th>Caixa (Kg)</th>
+                    <th>Tipo de embalagem</th>
                     <th>Referência completa</th>
                 </tr>
             </thead>
@@ -233,7 +244,7 @@
         // Função de validação do código completo
         function validarCodigoCompleto(codigo) {
             const somenteNumeros = codigo.replace(/\s/g, '').length; // Remove os espaços e conta os números
-            return somenteNumeros === 26 && /^[0-9\s]+$/.test(codigo); // Valida 28 dígitos numéricos com espaços
+            return somenteNumeros === 19 && /^[0-9\s]+$/.test(codigo) ; // Valida 19 dígitos numéricos com espaços
         }
         
         
