@@ -8,7 +8,8 @@ const especieMap = { "01": "CAM CINZA" };
         "5": "DESC PPV TAIL OFF",
         "6": "DESC PPV TAIL ON",
         "7": "DESC PED TAIL OFF",
-        "8": "DESC PED TAIL ON"
+        "8": "DESC PED TAIL ON",
+        "9": "EMP PRE FRITO"
     };
     const estadoMap = { "0": "CRU", "1": "COZ" };
     const condicaoMap = { "0": "CONG IQF", "1": "CONG IQF1", "2": "CONG IQF2", "3": "CONG IQF3"};
