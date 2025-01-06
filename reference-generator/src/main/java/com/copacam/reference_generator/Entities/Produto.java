@@ -24,7 +24,6 @@ public class Produto {
     private String apresentacao;
     private String estado;
     private String tipoConservacao;
-    private String pecas;
     private String classificacao;
     private String pacote;
     private String caixa;

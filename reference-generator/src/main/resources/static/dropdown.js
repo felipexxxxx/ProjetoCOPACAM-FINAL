@@ -23,7 +23,8 @@ const especieMap = { "01": "CAM CINZA" };
     const caixaMap = {
         "10":"10KG",
         "08":"8KG",
-        "06":"6KG"
+        "06":"6KG",
+        "05":"5KG"
     }
     const embalagemMap = {
         "01": "COPACAM",

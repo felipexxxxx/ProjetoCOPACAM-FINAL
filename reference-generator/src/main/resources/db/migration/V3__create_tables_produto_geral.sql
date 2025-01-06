@@ -5,7 +5,6 @@ CREATE TABLE produto (
     apresentacao VARCHAR(50) NOT NULL,
     estado VARCHAR(50) NOT NULL,
     tipo_conservacao VARCHAR(50) NOT NULL,
-    pecas VARCHAR(20),
     classificacao VARCHAR(20),
     pacote VARCHAR(20),
     caixa VARCHAR(20),

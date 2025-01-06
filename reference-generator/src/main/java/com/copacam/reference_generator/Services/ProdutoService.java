@@ -38,7 +38,6 @@ public class ProdutoService {
             produtoDTO.getApresentacao(),
             produtoDTO.getEstado(),
             produtoDTO.getTipoConservacao(),
-            produtoDTO.getPecas(),
             produtoDTO.getClassificacao(),
             produtoDTO.getPacote(),
             produtoDTO.getCaixa(),
@@ -90,12 +89,11 @@ public class ProdutoService {
 
     private String gerarCodigoCompletoRegular(ProdutoDTO dto) {
         return String.format(
-            "%s %s %s %s %s %s %s %s %s",
+            "%s %s %s %s %s %s %s %s",
             dto.getEspecie(),
             dto.getApresentacao(),
             dto.getEstado(),
             dto.getTipoConservacao(),
-            dto.getPecas() != null ? dto.getPecas() : "",
             dto.getClassificacao() != null ? dto.getClassificacao() : "",
             dto.getPacote() != null ? dto.getPacote() : "",
             dto.getCaixa() != null ? dto.getCaixa() : "",
