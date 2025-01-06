@@ -12,7 +12,7 @@ function AtualizarTabelaReferencia() {
     let codigoCompleto;
 
     if (apresentacaoInput === "0") { // "IN NATURA" selecionado
-        codigoCompleto = `${especieInput} ${apresentacaoInput} 0000000000000 ${gramaturaInput}`; // Código de 28 dígitos
+        codigoCompleto = `${especieInput} ${apresentacaoInput} 00000000000000 ${gramaturaInput}`; // Código de 20 dígitos
 
         // Preencher valores na tabela IN NATURA
         const tabelaInNaturaBody = document.getElementById("tabelaDescricaoInNatura");

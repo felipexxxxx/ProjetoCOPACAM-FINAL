@@ -26,8 +26,8 @@ const especieMap = { "01": "CAM CINZA" };
         "06":"6KG"
     }
     const embalagemMap = {
-        "1": "COPACAM",
-        "2": "MARCHEF"
+        "01": "COPACAM",
+        "02": "MARCHEF"
     }
 
 // Função para configurar os filtros dinamicamente

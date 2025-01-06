@@ -109,7 +109,7 @@ public class ProdutoService {
         gramatura = gramatura.length() > 3 ? gramatura.substring(0, 3) : gramatura; // Limita a 3 dígitos
         gramatura = String.format("%03d", Integer.parseInt(gramatura)); // Preenche com zeros à esquerda
         return String.format(
-            "%s 0 0000000000000 %s",
+            "%s 0 00000000000000 %s",
             dto.getEspecie(),
             gramatura
         ).trim();
