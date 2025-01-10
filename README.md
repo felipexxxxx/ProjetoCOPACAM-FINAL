@@ -1,7 +1,7 @@
 # Sistema de Geração de Códigos de Produtos de Camarão 🦐
 
 ## **Descrição do Projeto**
-Este projeto foi desenvolvido para uma cooperativa de camarão com o objetivo de criar um **sistema de geração de códigos únicos** para produtos de camarão, tanto **in natura** quanto **acabados**. O sistema conta com um **frontend** em **HTML, CSS, JavaScript e Bootstrap** e um **backend** em **Spring Boot**, utilizando **JWT** para autenticação e um banco de dados **MySQL** local.
+Este projeto foi desenvolvido para a **COPACAM**, Cooperativa de Camarão do Ceará, com o objetivo de criar um **sistema de geração de códigos únicos** para produtos de camarão, tanto **in natura** quanto **acabados**. O sistema conta com um **frontend** em **HTML, CSS, JavaScript e Bootstrap** e um **backend** em **Spring Boot**, utilizando **JWT** para autenticação e um banco de dados **MySQL** local.
 
 ### **Destaques do Projeto**
 - **Interface Dinâmica:** o código do produto e sua descrição são gerados em tempo real conforme o usuário ADM preenche as informações.
