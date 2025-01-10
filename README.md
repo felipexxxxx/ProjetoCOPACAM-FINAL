@@ -79,18 +79,18 @@ spring.jpa.show-sql=true
 
 ### **Passo 1: Configuração Inicial**  
 1. Instale o **Java JDK 17 ou superior**.  
-2. Instale o **MySQL** e crie o banco de dados utilizando os scripts SQL:  
-   - `V1__create_tables_users.sql`: cria a tabela de usuários.  
-   - `V2__create_tables_produto_in_natura.sql`: cria a tabela de produtos in natura.  
-   - `V3__create_tables_produto_geral.sql`: cria a tabela de produtos acabados.  
+2. Instale o **MySQL** e crie o banco de dados  
 
 ### **Passo 2: Execução do Sistema**  
-1. Certifique-se de que o MySQL está em execução.  
-2. Execute o arquivo `executar.vbs` com um **duplo clique**.  
-3. A aplicação será inicializada automaticamente:  
-   - O backend Spring Boot será iniciado.  
-   - O servidor estará disponível em `http://localhost:8080`.  
-   - Abra `index.html` no navegador para acessar a interface.  
+1. **Altere o arquivo `executar.vbs`**:
+   - Abra o arquivo `executar.vbs` em um editor de texto.  
+   - Substitua o caminho do arquivo `.bat` pelo diretório correto onde o arquivo `inicializar.bat` está localizado na sua máquina.
+    
+2. **Altere o arquivo `inicializar.bat`**:
+   - Abra o arquivo `inicializar.bat` em um editor de texto.  
+   - Atualize o caminho para apontar para o local correto do arquivo `pom.xml` do projeto Spring Boot.
+  
+3. Execute o arquivo `executar.vbs` com um **duplo clique**. 
 
 ---
 
