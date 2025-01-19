@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Camarões</title>
+    <title>Lista de Produtos</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -13,11 +13,17 @@
         <div class="d-flex justify-content-end mb-2">
             <button id="botaoVoltar" class="btn btn-secondary">Voltar</button>
         </div>
+        
 
         <!-- Título -->
-        <h1 class="text-center mt-4">Lista de produtos processados</h1>
 
-        <!-- Tabela de Camarões Regulares -->
+
+        <h1 class="text-center mt-1">Produtos processados</h2>
+        <div id="containerTabelas">
+            <!-- Tabelas dinâmicas serão inseridas aqui -->
+        </div>
+        <!-- Tabela para produtos IN NATURA -->
+        <h2 class="text-center mt-4">Produtos IN NATURA</h2>
         <table class="table table-bordered text-center">
             <thead>
                 <tr>
@@ -25,39 +31,22 @@
                     <th>Descrição</th>
                 </tr>
             </thead>
-            <tbody id="tabelaProdutos">
-                <!-- Os dados serão preenchidos dinamicamente -->
+            <tbody id="tabelaProdutosInNatura">
+                <!-- Dados serão preenchidos dinamicamente -->
             </tbody>
         </table>
-
-        <!-- Tabela de Camarões IN NATURA -->
-        <table class="table table-bordered text-center">
-            <h1 class="text-center mt-4">Lista de produtos MP</h1>
-            <table class="table table-bordered text-center">
-                <thead>
-                    <tr>
-                        <th>Código Completo</th>
-                        <th>Descrição</th>
-                    </tr>
-                </thead>
-                <tbody id="tabelaProdutosInNatura">
-                    <!-- Conteúdo preenchido dinamicamente -->
-                </tbody>
-            </table>
-        </div>
     </div>
-    <!-- Script para funcionalidades -->
+
     <script src="api.js"></script>
     <script>
-        // Botão Voltar
         document.getElementById("botaoVoltar").addEventListener("click", () => {
             window.location.href = "index.html";
         });
 
-        // Chamar a função para carregar os camarões ao abrir a página
+        // Chamar funções para carregar os dados
         window.onload = () => {
-            carregarCamaroes();
-            carregarProdutosInNatura();
+            carregarProdutosInNatura();       // Carregar produtos IN NATURA
+            carregarProdutosPorApresentacao(); // Carregar produtos por apresentação
         };
     </script>
 </body>

@@ -13,6 +13,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -73,11 +76,18 @@ public class ProdutoService {
         return produtoInNaturaRepository.save(produtoInNatura);
     }
 
-    public List<ProdutoListResponseDTO> listarProdutos() {
-        return produtoRepository.findAll()
-                .stream()
-                .map(produto -> new ProdutoListResponseDTO(produto.getCodigoCompleto(), produto.getDescricao()))
-                .collect(Collectors.toList());
+     public Map<String, List<ProdutoListResponseDTO>> listarProdutosPorApresentacao() {
+        List<Produto> produtos = produtoRepository.findAll();
+        Map<String, List<ProdutoListResponseDTO>> produtosPorApresentacao = new HashMap<>();
+
+        produtos.forEach(produto -> {
+            String apresentacao = produto.getApresentacao();
+            produtosPorApresentacao
+                .computeIfAbsent(apresentacao, key -> new ArrayList<>())
+                .add(new ProdutoListResponseDTO(produto.getCodigoCompleto(), produto.getDescricao()));
+        });
+
+        return produtosPorApresentacao;
     }
 
     public List<ProdutoListResponseNaturaDTO> listarProdutosInNatura() {

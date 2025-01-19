@@ -13,6 +13,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @CrossOrigin(origins = "http://127.0.0.1:5500")
 @RestController
@@ -41,10 +42,14 @@ public class ProdutoController {
         }
     }
 
+
+
     @GetMapping
-    public ResponseEntity<List<ProdutoListResponseDTO>> listarProdutos() {
-        return ResponseEntity.ok(produtoService.listarProdutos());
+    public ResponseEntity<Map<String, List<ProdutoListResponseDTO>>> listarProdutosPorApresentacao() {
+        return ResponseEntity.ok(produtoService.listarProdutosPorApresentacao());
     }
+
+
 
     @GetMapping("/natura")
     public ResponseEntity<List<ProdutoListResponseNaturaDTO>> listarProdutosInNatura() {

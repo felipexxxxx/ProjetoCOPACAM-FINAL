@@ -1,3 +1,16 @@
+const apresentacaoCustomMap = {
+    "0": "IN NATURA",
+    "1": "Inteiro",
+    "2": "Sem Cabeça",
+    "3": "Descascado PUD",
+    "4": "Descascado PUD", // Agrupado com 3
+    "5": "Descascado PPV",
+    "6": "Descascado PPV", // Agrupado com 5
+    "7": "Descascado PED",
+    "8": "Descascado PED", // Agrupado com 7
+    "9": "Empanado Pré Frito"
+};
+
 document.getElementById("criarProduto")?.addEventListener("click", async () => {
     try {
         // Exibir aviso de confirmação
@@ -275,5 +288,86 @@ document.getElementById("loginForm").addEventListener("submit", function(event) 
         feedback.textContent = error.message;
     });
 });
+
+async function carregarProdutosPorApresentacao() {
+    try {
+        const token = localStorage.getItem("token");
+        if (!token) {
+            alert("Token de autenticação não encontrado. Faça login novamente.");
+            window.location.href = "login.html"; // Redireciona para o login
+            return;
+        }
+
+        const response = await fetch("http://localhost:8080/produtos", {
+            method: "GET",
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
+        });
+
+        if (response.ok) {
+            const produtosPorApresentacao = await response.json();
+
+            // Reorganizar produtos com base na apresentação customizada
+            const agrupadosPorApresentacao = {};
+            for (const [apresentacaoKey, produtos] of Object.entries(produtosPorApresentacao)) {
+                const categoriaCustomizada = apresentacaoCustomMap[apresentacaoKey] || "Outro";
+
+                // Inicializar array se ainda não existe
+                if (!agrupadosPorApresentacao[categoriaCustomizada]) {
+                    agrupadosPorApresentacao[categoriaCustomizada] = [];
+                }
+
+                // Adicionar produtos à categoria correspondente
+                agrupadosPorApresentacao[categoriaCustomizada] = [
+                    ...agrupadosPorApresentacao[categoriaCustomizada],
+                    ...produtos
+                ];
+            }
+
+            // Atualizar o HTML com as tabelas dinâmicas
+            const containerTabelas = document.getElementById("containerTabelas");
+            containerTabelas.innerHTML = ""; // Limpar o contêiner antes de recriar
+
+            for (const [categoria, produtos] of Object.entries(agrupadosPorApresentacao)) {
+                // Ordenar os produtos pelo código completo
+                produtos.sort((a, b) => a.codigoCompleto.localeCompare(b.codigoCompleto));
+
+                const tabelaHtml = `
+                    <div class="mt-4">
+                        <h3>${categoria}</h3>
+                        <table class="table table-bordered text-center">
+                            <thead>
+                                <tr>
+                                    <th>Código Completo</th>
+                                    <th>Descrição</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${produtos.map(produto => `
+                                    <tr>
+                                        <td>${produto.codigoCompleto}</td>
+                                        <td>${produto.descricao}</td>
+                                    </tr>
+                                `).join('')}
+                            </tbody>
+                        </table>
+                    </div>
+                `;
+                containerTabelas.innerHTML += tabelaHtml;
+            }
+        } else {
+            const errorMessage = await response.text();
+            console.error("Erro ao carregar os produtos por apresentação:", errorMessage);
+            alert("Erro ao carregar os produtos por apresentação: " + errorMessage);
+        }
+    } catch (error) {
+        console.error("Erro ao carregar os produtos por apresentação:", error);
+        alert("Erro ao carregar os produtos por apresentação.");
+    }
+}
+
+
+
 
 
