@@ -28,6 +28,7 @@ function AtualizarTabelaReferencia() {
         // Exibir a tabela IN NATURA e ocultar a tabela original
         document.getElementById("tabelaDescricao").parentNode.style.display = "none"; // Oculta a tabela original (incluindo o botão Copiar)
         document.getElementById("botaoCopiarTabelaOriginal").style.display = "none"; // Oculta o botão da tabela original
+        document.getElementById("botaoCriarProduto").style.display = "none"; // Oculta o botão de criar produto
         document.getElementById("tabelaInNatura").style.display = "table"; // Exibe tabela IN NATURA
         document.getElementById("botaoCopiarTabelaInNatura").style.display = "block"; // Exibe o botão da tabela IN NATURA
     
@@ -68,6 +69,7 @@ function AtualizarTabelaReferencia() {
         // Exibir a tabela original e ocultar a tabela IN NATURA
         document.getElementById("tabelaDescricao").parentNode.style.display = "block"; // Exibe a tabela original (incluindo o botão Copiar)
         document.getElementById("botaoCopiarTabelaOriginal").style.display = "block"; // Oculta o botão da tabela original
+        document.getElementById("botaoCriarProduto").style.display = "block"; // Oculta o botão de criar produto
         document.getElementById("tabelaInNatura").style.display = "none"; // Oculta tabela IN NATURA
         document.getElementById("botaoCopiarTabelaInNatura").style.display = "none"; // Exibe o botão da tabela IN NATURA
    

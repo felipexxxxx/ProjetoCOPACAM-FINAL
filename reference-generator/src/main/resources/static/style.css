@@ -134,6 +134,11 @@ table {
       justify-content: flex-end; /* Alinha o botão à direita */
       margin-top: 10px; /* Espaçamento entre a tabela e o botão */
   }
+  .copiar-botao-container2 {
+    display: flex;
+    justify-content: flex-start; /* Alinha o botão à direita */
+    margin-top: 10px; /* Espaçamento entre a tabela e o botão */
+}
   #tabelaDescricao, #tabelaDescricaoCompleta {
     margin-top: 10px;
     background-color: #f9f9f9; /* Branco suave */
