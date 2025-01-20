@@ -16,7 +16,40 @@ Este projeto foi desenvolvido para a **COPACAM**, Cooperativa de Camarão do Cea
   - **Produto In Natura:** registro de camarões sem processamento.
   - **Produto Acabado:** registro de camarões processados.
 - **Listagem de Produtos:** visualização de produtos in natura e acabados.
+  - Listagem completa de produtos separados por **Apresentação**.
+  - Listagem separada para **Produtos In Natura**.
+- **Tabelas Dinâmicas por Categoria:** organização automática de produtos com base no campo **Apresentação**.
 - **Validação de Duplicação:** busca por códigos para evitar duplicações.
+
+---
+
+## **Endpoints da API REST**
+
+### **1. Criar Produto Acabado**  
+- **Rota:** `POST /produtos`  
+- **Descrição:** Registra um novo produto acabado.  
+- **Campos Requeridos:**  
+  - `especie`, `apresentacao`, `estado`, `tipoConservacao`, `classificacao`, `pacote`, `caixa`, `embalagem`.  
+
+---
+
+### **2. Criar Produto In Natura**  
+- **Rota:** `POST /produtos/natura`  
+- **Descrição:** Registra um novo produto in natura.  
+- **Campos Requeridos:**  
+  - `especie`, `apresentacao`, `gramatura`, `descricao`.  
+
+---
+
+### **3. Listar Produtos por Apresentação**  
+- **Rota:** `GET /produtos`  
+- **Descrição:** Retorna os produtos agrupados por apresentação, em um formato de `Map<String, List<ProdutoListResponseDTO>>`.  
+
+---
+
+### **4. Listar Produtos In Natura**  
+- **Rota:** `GET /produtos/natura`  
+- **Descrição:** Retorna uma lista de produtos in natura com seus códigos e descrições.  
 
 ---
 
