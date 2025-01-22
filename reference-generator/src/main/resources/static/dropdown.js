@@ -47,7 +47,7 @@ function preencherFiltroDinamico(dropdownId, optionsMap, inputId) {
     const dropdown = document.getElementById(dropdownId);
     Object.entries(optionsMap).forEach(([key, value]) => {
         const li = document.createElement("li");
-        li.innerHTML = `<a class="dropdown-item" href="#" onclick="selecionarFiltro('${inputId}', '${value}')">${value}</a>`;
+        li.innerHTML = `<a class="dropdown-item" href="#" onclick="event.preventDefault(); selecionarFiltro('${inputId}', '${value}')">${value}</a>`;
         dropdown.appendChild(li);
     });
 }

@@ -1,17 +1,5 @@
-const apresentacaoCustomMap = {
-    "0": "IN NATURA",
-    "1": "Inteiro",
-    "2": "Sem Cabeça",
-    "3": "Descascado PUD",
-    "4": "Descascado PUD", // Agrupado com 3
-    "5": "Descascado PPV",
-    "6": "Descascado PPV", // Agrupado com 5
-    "7": "Descascado PED",
-    "8": "Descascado PED", // Agrupado com 7
-    "9": "Empanado Pré Frito"
-};
-
 document.getElementById("criarProduto")?.addEventListener("click", async () => {
+    event.preventDefault();
     try {
         // Exibir aviso de confirmação
         const confirmacao = confirm("Você tem certeza de que deseja criar este produto?");
@@ -156,7 +144,18 @@ document.getElementById("criarProdutoInNatura")?.addEventListener("click", async
         alert(`Erro ao se comunicar com o servidor: ${err.message}`);
     }
 });
-
+const apresentacaoCustomMap = {
+    "0": "IN NATURA",
+    "1": "Inteiro",
+    "2": "Sem Cabeça",
+    "3": "Descascado PUD",
+    "4": "Descascado PUD", // Agrupado com 3
+    "5": "Descascado PPV",
+    "6": "Descascado PPV", // Agrupado com 5
+    "7": "Descascado PED",
+    "8": "Descascado PED", // Agrupado com 7
+    "9": "Empanado Pré Frito"
+};
 
  // Carrega os dados ao abrir a página
  async function carregarCamaroes() {
