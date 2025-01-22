@@ -105,6 +105,7 @@ table {
       align-items: center;
   }
   
+  
   form#descricaoForm .form-control {
       width: 95%; /* Faz com que as caixas fiquem quase do tamanho da tabela */
       height: 40px; /* Define uma altura uniforme para todas as caixas */
@@ -128,6 +129,10 @@ table {
   .table {
       max-width: 100%; /* Mantém a tabela responsiva */
       margin: 0 auto;
+  }
+  td:nth-child(2) {
+    text-align: left; /* Alinha o texto da segunda coluna (Descrição) à esquerda */
+    padding-left: 15px; /* Adiciona um espaçamento para afastar o texto da borda */
   }
   .copiar-botao-container {
       display: flex;
