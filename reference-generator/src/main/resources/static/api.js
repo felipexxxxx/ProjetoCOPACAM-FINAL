@@ -366,7 +366,14 @@ async function carregarProdutosPorApresentacao() {
     }
 }
 
+function iniciarPing() {
+    function enviarPing() {
+        fetch("http://localhost:8080/ping").catch(() => {});
+    }
+    setInterval(enviarPing, 5000); // Envia um ping a cada 5 segundos
+}
 
+window.iniciarPing = iniciarPing;
 
 
 

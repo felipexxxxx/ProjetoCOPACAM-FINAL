@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
+<body>
 <div class="container mt-5">
     <h1 class="text-center">Tabela de Criação de Referências e Descrições de Produtos</h1>
     <div class="d-flex justify-content-end mb-2">
@@ -264,17 +265,15 @@
                     console.error(err);
                 });
         }
-
-
-        
     </script>
+
     <script>
         document.getElementById("botaoSair")?.addEventListener("click", () => {
             const confirmacao = confirm("Tem certeza de que deseja sair?");
             if (confirmacao) {
                 // Remove o token do localStorage
                 localStorage.removeItem("token");
-        
+                
                 // Exibe uma mensagem de saída bem-sucedida
                 alert("Você saiu com sucesso!");
         
@@ -282,10 +281,12 @@
                 window.location.href = "login.html";
             }
         });
-        
     </script>
 
-   
+    <script>
+        iniciarPing();
+    </script>
+    
 </body>
 </html>
 
