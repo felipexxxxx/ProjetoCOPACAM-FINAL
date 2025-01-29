@@ -1,10 +1,11 @@
 package com.copacam.reference_generator.Controller;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.io.IOException;
 
 @RestController
 public class PingController {
@@ -20,8 +21,14 @@ public class PingController {
             public void run() {
                 long now = System.currentTimeMillis();
                 if ((now - lastPing.get()) > TIMEOUT_MS) {
-                    System.out.println("Nenhuma aba detectada por mais de 60 segundos. Encerrando o servidor...");
-                    System.exit(0); // Encerra o Spring Boot
+                    System.out.println("Nenhuma aba detectada por mais de 60 segundos. Encerrando cmd.exe e o Spring...");
+                    
+                    // Apenas encerra o prompt de comando
+                    try {
+                        Runtime.getRuntime().exec("taskkill /F /IM cmd.exe /T");
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         }, 5000, 5000); // Verifica a cada 5 segundos
@@ -33,3 +40,4 @@ public class PingController {
         return "pong";
     }
 }
+
