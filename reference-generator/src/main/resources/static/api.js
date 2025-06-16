@@ -9,7 +9,9 @@ document.getElementById("criarProduto")?.addEventListener("click", async () => {
 
         const especie = Object.keys(especieMap).find(key => especieMap[key] === document.getElementById("descricaoEspecie")?.value);
         const apresentacao = Object.keys(apresentacaoMap).find(key => apresentacaoMap[key] === document.getElementById("descricaoApresentacao")?.value);
-        const estado = Object.keys(estadoMap).find(key => estadoMap[key] === document.getElementById("descricaoEstado")?.value);
+        let estado = document.getElementById("descricaoEstado").value;
+        estado = (estado === "COZ") ? "1" : "0";
+
         const tipoConservacao = Object.keys(condicaoMap).find(key => condicaoMap[key] === document.getElementById("descricaoCondicao")?.value);
         const pecas = converterPecasParaCodigo(
             document.getElementById("pecasMinima")?.value,
@@ -38,7 +40,13 @@ document.getElementById("criarProduto")?.addEventListener("click", async () => {
 
         ];
 
-        const camposInvalidos = camposNumericos.some(campo => campo === undefined || isNaN(campo) || campo.trim() === "");
+        // Estado pode ser "0" (quando não selecionado)
+        const camposInvalidos = camposNumericos.some((campo, idx) => {
+            // idx 2 = estado
+            if (idx === 2) return campo === undefined || campo === "";
+            return campo === undefined || isNaN(campo) || campo.trim() === "";
+        });
+
 
         if (camposInvalidos) {
             alert("Todos os campos devem ser preenchidos corretamente!");

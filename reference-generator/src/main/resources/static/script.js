@@ -33,7 +33,15 @@ function AtualizarTabelaReferencia() {
         document.getElementById("botaoCopiarTabelaInNatura").style.display = "block"; // Exibe o botão da tabela IN NATURA
     
     } else {
-        const estadoInput = Object.keys(estadoMap).find(key => estadoMap[key] === document.getElementById("descricaoEstado").value) || "-";
+        let estadoInput = document.getElementById("descricaoEstado").value;
+        if (!estadoInput) {
+            estadoInput = "0"; // mostra o código
+            // OU, se quiser mostrar "CRU" em vez de "0":
+            // estadoInput = "CRU";
+        } else if (estadoInput === "COZ") {
+            estadoInput = "1";
+        }
+
         const condicaoInput = Object.keys(condicaoMap).find(key => condicaoMap[key] === document.getElementById("descricaoCondicao").value) || "-";
        
         const pecasCodigo = converterPecasParaCodigo(
@@ -98,7 +106,13 @@ function AtualizarTabelaDescricaoCompleta() {
     } else {
         // Captura os outros campos caso não seja "IN NATURA"
         const condicao = document.getElementById("descricaoCondicao").value || "Inválido";
-        const estado = document.getElementById("descricaoEstado").value || "Inválido";
+        // Estado para a descrição completa
+        let estado = document.getElementById("descricaoEstado").value;
+        if (estado !== "COZ") {
+            estado = ""; // Não exibe nada
+        }
+    
+
         const pecasMinimaInput = document.getElementById("pecasMinima").value || "Inválido";
         const pecasMaximaInput = document.getElementById("pecasMaxima").value || "Inválido";
         const classificacaoMinimaInput = document.getElementById("classificacaoMinima").value || "Inválido";
