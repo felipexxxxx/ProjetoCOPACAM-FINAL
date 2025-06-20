@@ -44,10 +44,6 @@ function AtualizarTabelaReferencia() {
 
         const condicaoInput = Object.keys(condicaoMap).find(key => condicaoMap[key] === document.getElementById("descricaoCondicao").value) || "-";
        
-        const pecasCodigo = converterPecasParaCodigo(
-            document.getElementById("pecasMinima").value,
-            document.getElementById("pecasMaxima").value
-        );
         const classificacaoCodigo = converterClassificacaoParaCodigo(
             document.getElementById("classificacaoMinima").value,
             document.getElementById("classificacaoMaxima").value
@@ -112,20 +108,17 @@ function AtualizarTabelaDescricaoCompleta() {
             estado = ""; // Não exibe nada
         }
     
-
-        const pecasMinimaInput = document.getElementById("pecasMinima").value || "Inválido";
-        const pecasMaximaInput = document.getElementById("pecasMaxima").value || "Inválido";
         const classificacaoMinimaInput = document.getElementById("classificacaoMinima").value || "Inválido";
         const classificacaoMaximaInput = document.getElementById("classificacaoMaxima").value || "Inválido";
         const pacoteInput = document.getElementById("descricaoPacote").value || "Inválido";
         const caixaInput = document.getElementById("descricaoCaixa").value || "Inválido";
 
-        const pecasCodigo = formatarPecasPorPacote(pecasMinimaInput, pecasMaximaInput);
+
         const classificacaoCodigo = formatarClassificacao(classificacaoMinimaInput, classificacaoMaximaInput);
         const caixa = formatarCaixa(caixaInput);
         const pacote = formatarPacote(pacoteInput); // Garante que somente códigos válidos sejam formatados
         const embalagem = document.getElementById("descricaoEmbalagem").value || "Inválido";
-        descricaoCompleta = `${especie} ${apresentacao} ${estado} ${condicao}  ${pecasCodigo} ${classificacaoCodigo} ${pacote} ${caixa} ${embalagem}`;
+        descricaoCompleta = `${especie} ${apresentacao} ${estado} ${condicao}  ${classificacaoCodigo} ${pacote} ${caixa} ${embalagem}`;
     }
 
     // Atualiza a nova tabela de descrição completa
@@ -161,8 +154,6 @@ document.getElementById("dropdownApresentacao").addEventListener("click", functi
             // Zerar os campos antigos
             document.getElementById("descricaoCondicao").value = "-";
             document.getElementById("descricaoEstado").value = "-";
-            document.getElementById("pecasMinima").value = " ";
-            document.getElementById("pecasMaxima").value = " ";
             document.getElementById("classificacaoMinima").value = " ";
             document.getElementById("classificacaoMaxima").value = " ";
             document.getElementById("descricaoPacote").value = "-";
