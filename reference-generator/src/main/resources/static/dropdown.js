@@ -14,17 +14,17 @@ const especieMap = { "01": "CAM CINZA" };
     const estadoMap = { "1": "COZ" };
     const condicaoMap = { "0": "CONG IQF", "1": "CONG IQF1", "2": "CONG IQF2", "3": "CONG IQF3"};
     const pacoteMap = {
-        "05000": "5KG",
-        "01000": "1KG",
+        "05000": "5kg",
+        "01000": "1kg",
         "00300": "300g",
         "00200": "200g",
         "00150": "150g"
     };
     const caixaMap = {
-        "10":"10KG",
-        "08":"8KG",
-        "06":"6KG",
-        "05":"5KG"
+        "10":"10kg",
+        "08":"8kg",
+        "06":"6kg",
+        "05":"5kg"
     }
     const embalagemMap = {
         "01": "COPACAM",

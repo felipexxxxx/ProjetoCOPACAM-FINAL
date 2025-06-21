@@ -100,34 +100,60 @@ function AtualizarTabelaDescricaoCompleta() {
         // Formatação para IN NATURA: Apenas Espécie, Apresentação e Gramatura
         descricaoCompleta = `${especie} ${apresentacao} ${gramaturaInput}g`;
     } else {
-        // Captura os outros campos caso não seja "IN NATURA"
         const condicao = document.getElementById("descricaoCondicao").value || "Inválido";
-        // Estado para a descrição completa
+
         let estado = document.getElementById("descricaoEstado").value;
         if (estado !== "COZ") {
-            estado = ""; // Não exibe nada
+            estado = ""; // Esconde se não for COZ
         }
-    
-        const classificacaoMinimaInput = document.getElementById("classificacaoMinima").value || "Inválido";
-        const classificacaoMaximaInput = document.getElementById("classificacaoMaxima").value || "Inválido";
+
+        const classificacaoMinimaInput = document.getElementById("classificacaoMinima").value || "";
+        const classificacaoMaximaInput = document.getElementById("classificacaoMaxima").value || "";
         const pacoteInput = document.getElementById("descricaoPacote").value || "Inválido";
         const caixaInput = document.getElementById("descricaoCaixa").value || "Inválido";
-
-
-        const classificacaoCodigo = formatarClassificacao(classificacaoMinimaInput, classificacaoMaximaInput);
-        const caixa = formatarCaixa(caixaInput);
-        const pacote = formatarPacote(pacoteInput); // Garante que somente códigos válidos sejam formatados
         const embalagem = document.getElementById("descricaoEmbalagem").value || "Inválido";
-        descricaoCompleta = `${especie} ${apresentacao} ${estado} ${condicao}  ${classificacaoCodigo} ${pacote} ${caixa} ${embalagem}`;
+
+        // Lógica correta para mostrar "PEDAÇOS" apenas quando ambos são 0 digitado
+        const temClassificacaoMin = classificacaoMinimaInput.trim() !== "";
+        const temClassificacaoMax = classificacaoMaximaInput.trim() !== "";
+
+        const valorMinimo = parseInt(classificacaoMinimaInput.trim() || "0", 10);
+        const valorMaximo = parseInt(classificacaoMaximaInput.trim() || "0", 10);
+
+        let classificacaoCodigo = "";
+
+        if (temClassificacaoMin && temClassificacaoMax) {
+            if (valorMinimo === 0 && valorMaximo === 0) {
+                classificacaoCodigo = "PEDAÇOS";
+            } else {
+                classificacaoCodigo = formatarClassificacao(valorMinimo, valorMaximo);
+            }
+        }
+
+        const caixa = formatarCaixa(caixaInput);
+        const pacote = formatarPacote(pacoteInput);
+
+        descricaoCompleta = `${especie} ${apresentacao} ${estado} ${condicao} ${classificacaoCodigo} ${pacote} ${caixa} ${embalagem}`;
     }
 
     // Atualiza a nova tabela de descrição completa
-    tabelaDescricaoCompleta.innerHTML = `
-        <tr>
-            <td>${descricaoCompleta}</td>
-        </tr>
-    `;
+    const tabelaDescricaoCompleta = document.getElementById("tabelaDescricaoCompleta");
+    if (descricaoCompleta && descricaoCompleta.trim() !== "") {
+        tabelaDescricaoCompleta.innerHTML = `
+            <tr>
+                <td>${descricaoCompleta}</td>
+            </tr>
+        `;
+    } else {
+        tabelaDescricaoCompleta.innerHTML = `
+            <tr>
+                <td>Nenhuma descrição disponível</td>
+            </tr>
+        `;
+    }
 }
+
+
 
 // Restringir campo de gramatura para números
 document.addEventListener("input", function (event) {

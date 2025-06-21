@@ -13,10 +13,6 @@ document.getElementById("criarProduto")?.addEventListener("click", async () => {
         estado = (estado === "COZ") ? "1" : "0";
 
         const tipoConservacao = Object.keys(condicaoMap).find(key => condicaoMap[key] === document.getElementById("descricaoCondicao")?.value);
-        const pecas = converterPecasParaCodigo(
-            document.getElementById("pecasMinima")?.value,
-            document.getElementById("pecasMaxima")?.value
-        );
         const classificacao = converterClassificacaoParaCodigo(
             document.getElementById("classificacaoMinima")?.value,
             document.getElementById("classificacaoMaxima")?.value
@@ -32,7 +28,6 @@ document.getElementById("criarProduto")?.addEventListener("click", async () => {
             apresentacao,
             estado,
             tipoConservacao,
-            pecas,
             classificacao,
             pacote,
             caixa,
@@ -301,7 +296,7 @@ async function carregarProdutosPorApresentacao() {
         const token = localStorage.getItem("token");
         if (!token) {
             alert("Token de autenticação não encontrado. Faça login novamente.");
-            window.location.href = "login.html"; // Redireciona para o login
+            window.location.href = "login.html";
             return;
         }
 
@@ -315,29 +310,45 @@ async function carregarProdutosPorApresentacao() {
         if (response.ok) {
             const produtosPorApresentacao = await response.json();
 
-            // Reorganizar produtos com base na apresentação customizada
-            const agrupadosPorApresentacao = {};
+            const agrupadosPorApresentacao = {
+                "PEDAÇOS": []
+            };
+
             for (const [apresentacaoKey, produtos] of Object.entries(produtosPorApresentacao)) {
-                const categoriaCustomizada = apresentacaoCustomMap[apresentacaoKey] || "Outro";
+                for (const produto of produtos) {
+                    if (produto.descricao.toUpperCase().includes("PEDAÇOS")) {
+                        agrupadosPorApresentacao["PEDAÇOS"].push(produto);
+                    } else {
+                        const categoria = apresentacaoCustomMap[apresentacaoKey] || "Outro";
 
-                // Inicializar array se ainda não existe
-                if (!agrupadosPorApresentacao[categoriaCustomizada]) {
-                    agrupadosPorApresentacao[categoriaCustomizada] = [];
+                        if (!agrupadosPorApresentacao[categoria]) {
+                            agrupadosPorApresentacao[categoria] = [];
+                        }
+
+                        agrupadosPorApresentacao[categoria].push(produto);
+                    }
                 }
-
-                // Adicionar produtos à categoria correspondente
-                agrupadosPorApresentacao[categoriaCustomizada] = [
-                    ...agrupadosPorApresentacao[categoriaCustomizada],
-                    ...produtos
-                ];
             }
 
-            // Atualizar o HTML com as tabelas dinâmicas
-            const containerTabelas = document.getElementById("containerTabelas");
-            containerTabelas.innerHTML = ""; // Limpar o contêiner antes de recriar
+            // 👉 Ordem personalizada conforme solicitado:
+            const ordemCategorias = [
+                "Inteiro",
+                "Sem Cabeça",
+                "Descascado PUD",
+                "Descascado PPV",
+                "Descascado PED",
+                "Empanado Pré Frito",
+                "PEDAÇOS",
+                "Camarão In Natura" // Se sobrar alguma categoria fora da ordem
+            ];
 
-            for (const [categoria, produtos] of Object.entries(agrupadosPorApresentacao)) {
-                // Ordenar os produtos pelo código completo
+            const containerTabelas = document.getElementById("containerTabelas");
+            containerTabelas.innerHTML = "";
+
+            for (const categoria of ordemCategorias) {
+                const produtos = agrupadosPorApresentacao[categoria];
+                if (!produtos || produtos.length === 0) continue;
+
                 produtos.sort((a, b) => a.codigoCompleto.localeCompare(b.codigoCompleto));
 
                 const tabelaHtml = `
@@ -363,6 +374,7 @@ async function carregarProdutosPorApresentacao() {
                 `;
                 containerTabelas.innerHTML += tabelaHtml;
             }
+
         } else {
             const errorMessage = await response.text();
             console.error("Erro ao carregar os produtos por apresentação:", errorMessage);
@@ -373,6 +385,11 @@ async function carregarProdutosPorApresentacao() {
         alert("Erro ao carregar os produtos por apresentação.");
     }
 }
+
+
+
+
+
 
 function iniciarPing() {
     function enviarPing() {
