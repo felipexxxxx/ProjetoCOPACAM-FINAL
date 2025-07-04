@@ -302,90 +302,94 @@ async function carregarProdutosPorApresentacao() {
 
         const response = await fetch("http://localhost:8080/produtos", {
             method: "GET",
-            headers: {
-                "Authorization": `Bearer ${token}`
-            }
+            headers: { "Authorization": `Bearer ${token}` }
         });
 
-        if (response.ok) {
-            const produtosPorApresentacao = await response.json();
+        if (!response.ok) throw new Error(await response.text());
 
-            const agrupadosPorApresentacao = {
-                "PEDAÇOS": []
-            };
+        /* ------------------------------------------------------------------
+           Ex.: { "07": [...], "11": [...] }
+        ------------------------------------------------------------------ */
+        const dadosApi = await response.json();
+        const agrupados = { "PEDAÇOS": [] };
 
-            for (const [apresentacaoKey, produtos] of Object.entries(produtosPorApresentacao)) {
-                for (const produto of produtos) {
-                    if (produto.descricao.toUpperCase().includes("PEDAÇOS")) {
-                        agrupadosPorApresentacao["PEDAÇOS"].push(produto);
-                    } else {
-                        const categoria = apresentacaoCustomMap[apresentacaoKey] || "Outro";
+        /* --------  códigos que sempre viram “Empanado Pré Frito”  -------- */
+        const codEmpanado = new Set(["9", "10", "11", "12", "13"]);
 
-                        if (!agrupadosPorApresentacao[categoria]) {
-                            agrupadosPorApresentacao[categoria] = [];
-                        }
+        for (const [apresentacaoKey, lista] of Object.entries(dadosApi)) {
+            const normalizada = String(parseInt(apresentacaoKey, 10)); // "07"→"7"
 
-                        agrupadosPorApresentacao[categoria].push(produto);
-                    }
+            for (const produto of lista) {
+
+                if (produto.descricao?.toUpperCase().includes("PEDAÇOS")) {
+                    agrupados["PEDAÇOS"].push(produto);
+                    continue;
                 }
+
+                /* ----- categoria pelo mapa ou regra extra para empanados ----- */
+                let categoria;
+                if (codEmpanado.has(normalizada)) {
+                    categoria = "Empanado Pré Frito";
+                } else {
+                    categoria = apresentacaoCustomMap[normalizada] || "Outro";
+                }
+
+                (agrupados[categoria] ??= []).push(produto);
             }
-
-            // 👉 Ordem personalizada conforme solicitado:
-            const ordemCategorias = [
-                "Inteiro",
-                "Sem Cabeça",
-                "Descascado PUD",
-                "Descascado PPV",
-                "Descascado PED",
-                "Empanado Pré Frito",
-                "PEDAÇOS",
-                "Camarão In Natura" // Se sobrar alguma categoria fora da ordem
-            ];
-
-            const containerTabelas = document.getElementById("containerTabelas");
-            containerTabelas.innerHTML = "";
-
-            for (const categoria of ordemCategorias) {
-                const produtos = agrupadosPorApresentacao[categoria];
-                if (!produtos || produtos.length === 0) continue;
-
-                produtos.sort((a, b) => a.codigoCompleto.localeCompare(b.codigoCompleto));
-
-                const tabelaHtml = `
-                    <div class="mt-4">
-                        <h3>${categoria}</h3>
-                        <table class="table table-bordered text-center">
-                            <thead>
-                                <tr>
-                                    <th>Código Completo</th>
-                                    <th>Descrição</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                ${produtos.map(produto => `
-                                    <tr>
-                                        <td>${produto.codigoCompleto}</td>
-                                        <td>${produto.descricao}</td>
-                                    </tr>
-                                `).join('')}
-                            </tbody>
-                        </table>
-                    </div>
-                `;
-                containerTabelas.innerHTML += tabelaHtml;
-            }
-
-        } else {
-            const errorMessage = await response.text();
-            console.error("Erro ao carregar os produtos por apresentação:", errorMessage);
-            alert("Erro ao carregar os produtos por apresentação: " + errorMessage);
         }
-    } catch (error) {
-        console.error("Erro ao carregar os produtos por apresentação:", error);
-        alert("Erro ao carregar os produtos por apresentação.");
+
+        /* ordem fixa de exibição */
+        const ordem = [
+            "Inteiro",
+            "Sem Cabeça",
+            "Descascado PUD",
+            "Descascado PPV",
+            "Descascado PED",
+            "Empanado Pré Frito",
+            "PEDAÇOS",
+            "Camarão In Natura"
+        ];
+
+        const container = document.getElementById("containerTabelas");
+        container.innerHTML = "";
+
+        for (const categoria of ordem) {
+            const lista = agrupados[categoria];
+            if (!lista?.length) continue;
+
+            /* ----------- AGORA ordena simplesmente por codigoCompleto ----------- */
+            lista.sort((a, b) => a.codigoCompleto.localeCompare(b.codigoCompleto));
+
+            container.insertAdjacentHTML(
+                "beforeend",
+                `
+                <div class="mt-4">
+                    <h3>${categoria}</h3>
+                    <table class="table table-bordered text-center">
+                        <thead>
+                            <tr>
+                                <th>Código Completo</th>
+                                <th>Descrição</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${lista.map(p => `
+                                <tr>
+                                    <td>${p.codigoCompleto}</td>
+                                    <td>${p.descricao}</td>
+                                </tr>
+                            `).join("")}
+                        </tbody>
+                    </table>
+                </div>
+                `
+            );
+        }
+    } catch (err) {
+        console.error("Erro ao carregar os produtos por apresentação:", err);
+        alert("Erro ao carregar os produtos por apresentação:\n" + err.message);
     }
 }
-
 
 
 

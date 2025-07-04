@@ -11,7 +11,7 @@ function AtualizarTabelaReferencia() {
 
     let codigoCompleto;
 
-    if (apresentacaoInput === "0") { // "IN NATURA" selecionado
+    if (apresentacaoInput === "00") { // "IN NATURA" selecionado
         codigoCompleto = `${especieInput} ${apresentacaoInput} 00000000000000 ${gramaturaInput}`; // Código de 20 dígitos
 
         // Preencher valores na tabela IN NATURA
@@ -52,7 +52,7 @@ function AtualizarTabelaReferencia() {
         const caixaInput = Object.keys(caixaMap).find(key => caixaMap[key] === document.getElementById("descricaoCaixa").value) || "-";
         const embalagemInput = Object.keys(embalagemMap).find(key => embalagemMap[key] === document.getElementById("descricaoEmbalagem").value) || "-";
 
-        codigoCompleto = `${especieInput} ${apresentacaoInput} ${estadoInput} ${condicaoInput} ${classificacaoCodigo} ${pacoteInput} ${caixaInput} ${embalagemInput}`; 
+        codigoCompleto = `${especieInput} ${apresentacaoInput} ${classificacaoCodigo} ${estadoInput} ${condicaoInput} ${pacoteInput} ${caixaInput} ${embalagemInput}`; 
 
         // Preencher valores na tabela original
         const tabelaOriginalBody = document.getElementById("tabelaDescricao");
@@ -60,9 +60,9 @@ function AtualizarTabelaReferencia() {
             <tr>
                 <td>${especieInput}</td>
                 <td>${apresentacaoInput}</td>
+                <td>${classificacaoCodigo}</td>
                 <td>${estadoInput}</td>
                 <td>${condicaoInput}</td>
-                <td>${classificacaoCodigo}</td>
                 <td>${pacoteInput}</td>
                 <td>${caixaInput}</td>
                 <td>${embalagemInput}</td>
@@ -133,7 +133,7 @@ function AtualizarTabelaDescricaoCompleta() {
         const caixa = formatarCaixa(caixaInput);
         const pacote = formatarPacote(pacoteInput);
 
-        descricaoCompleta = `${especie} ${apresentacao} ${estado} ${condicao} ${classificacaoCodigo} ${pacote} ${caixa} ${embalagem}`;
+        descricaoCompleta = `${especie} ${apresentacao} ${classificacaoCodigo} ${estado} ${condicao} ${pacote} ${caixa} ${embalagem}`;
     }
 
     // Atualiza a nova tabela de descrição completa

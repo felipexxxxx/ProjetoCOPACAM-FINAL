@@ -11,7 +11,7 @@ import java.io.IOException;
 public class PingController {
 
     private static final AtomicLong lastPing = new AtomicLong(System.currentTimeMillis());
-    private static final int TIMEOUT_MS = 60000; // 40 segundos sem ping para encerrar o servidor
+    private static final int TIMEOUT_MS = 6000000; // 40 segundos sem ping para encerrar o servidor
 
     public PingController() {
         // Cria um timer que verifica se os pings pararam e encerra o servidor

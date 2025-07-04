@@ -1,18 +1,22 @@
-const especieMap = { "01": "CAM CINZA" };
+const especieMap = { "01": "CAMARÃO" };
     const apresentacaoMap = {
-        "0": "IN NATURA",
-        "1": "INT",
-        "2": "S/CABEÇA",
-        "3": "DESC PUD",
-        "4": "DESC PUD TAIL ON (PTO)",
-        "5": "DESC PPV",
-        "6": "DESC PPV TAIL ON",
-        "7": "DESC PED",
-        "8": "DESC PED TAIL ON",
-        "9": "EMP PRE FRITO"
+        "10": "DESCASCADO PUD TAIL ON TEMPERADO EMPANADO PRE FRITO",
+        "11": "DESCASCADO EVISCERADO TEMPERADO EMPANADO PRE FRITO",
+        "12": "DESCASCADO EVISCERADO TAIL ON TEMPERADO EMPANADO PRE FRITO",
+        "13": "SEM CABEÇA TEMPERADO EMPANADO PRE FRITO",
+        "00": "IN NATURA",
+        "01": "INTEIRO",
+        "02": "SEM CABEÇA",
+        "03": "DESCASCADO PUD",
+        "04": "DESCASCADO PUD TAIL ON (PTO)",
+        "05": "DESCASCADO PPV",
+        "06": "DESCASCADO PPV TAIL ON",
+        "07": "DESCASCADO PED",
+        "08": "DESCASCADO PED TAIL ON",
+        "09": "DESCASCADO PUD TEMPERADO EMPANADO PRE FRITO"
     };
     const estadoMap = { "1": "COZ" };
-    const condicaoMap = { "0": "CONG IQF", "1": "CONG IQF1", "2": "CONG IQF2", "3": "CONG IQF3"};
+    const condicaoMap = { "0": "IQF", "1": "IQF 1", "2": "IQF 2", "3": "IQF 3"};
     const pacoteMap = {
         "05000": "5kg",
         "01000": "1kg",

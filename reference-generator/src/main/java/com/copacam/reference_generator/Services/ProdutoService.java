@@ -39,9 +39,9 @@ public class ProdutoService {
             codigoCompleto,
             produtoDTO.getEspecie(),
             produtoDTO.getApresentacao(),
+            produtoDTO.getClassificacao(),
             produtoDTO.getEstado(),
             produtoDTO.getTipoConservacao(),
-            produtoDTO.getClassificacao(),
             produtoDTO.getPacote(),
             produtoDTO.getCaixa(),
             produtoDTO.getEmbalagem(),
@@ -102,9 +102,9 @@ public class ProdutoService {
             "%s %s %s %s %s %s %s %s",
             dto.getEspecie(),
             dto.getApresentacao(),
+            dto.getClassificacao() != null ? dto.getClassificacao() : "",
             dto.getEstado(),
             dto.getTipoConservacao(),
-            dto.getClassificacao() != null ? dto.getClassificacao() : "",
             dto.getPacote() != null ? dto.getPacote() : "",
             dto.getCaixa() != null ? dto.getCaixa() : "",
             dto.getEmbalagem() != null ? dto.getEmbalagem() : ""
@@ -117,7 +117,7 @@ public class ProdutoService {
         gramatura = gramatura.length() > 3 ? gramatura.substring(0, 3) : gramatura; // Limita a 3 dígitos
         gramatura = String.format("%03d", Integer.parseInt(gramatura)); // Preenche com zeros à esquerda
         return String.format(
-            "%s 0 00000000000000 %s",
+            "%s 00 00000000000000 %s",
             dto.getEspecie(),
             gramatura
         ).trim();

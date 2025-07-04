@@ -235,7 +235,7 @@
         // Função de validação do código completo
         function validarCodigoCompleto(codigo) {
             const somenteNumeros = codigo.replace(/\s/g, '').length; // Remove os espaços e conta os números
-            return somenteNumeros === 20 && /^[0-9\s]+$/.test(codigo) ; // Valida 19 dígitos numéricos com espaços
+            return somenteNumeros === 21 || 20 && /^[0-9\s]+$/.test(codigo) ; // Valida 19 dígitos numéricos com espaços
         }
         
         
