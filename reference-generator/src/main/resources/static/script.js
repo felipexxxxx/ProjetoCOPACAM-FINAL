@@ -41,6 +41,8 @@ function AtualizarTabelaReferencia() {
         } else if (estadoInput === "COZ") {
             estadoInput = "1";
         }
+        else if (estadoInput === "PRE FRITO") {
+        estadoInput = "2"};
 
         const condicaoInput = Object.keys(condicaoMap).find(key => condicaoMap[key] === document.getElementById("descricaoCondicao").value) || "-";
        
@@ -103,9 +105,9 @@ function AtualizarTabelaDescricaoCompleta() {
         const condicao = document.getElementById("descricaoCondicao").value || "Inválido";
 
         let estado = document.getElementById("descricaoEstado").value;
-        if (estado !== "COZ") {
-            estado = ""; // Esconde se não for COZ
-        }
+        if (!estado || estado === "CRU") {
+        estado = "";
+    }
 
         const classificacaoMinimaInput = document.getElementById("classificacaoMinima").value || "";
         const classificacaoMaximaInput = document.getElementById("classificacaoMaxima").value || "";

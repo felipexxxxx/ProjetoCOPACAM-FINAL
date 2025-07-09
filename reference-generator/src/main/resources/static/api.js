@@ -10,7 +10,9 @@ document.getElementById("criarProduto")?.addEventListener("click", async () => {
         const especie = Object.keys(especieMap).find(key => especieMap[key] === document.getElementById("descricaoEspecie")?.value);
         const apresentacao = Object.keys(apresentacaoMap).find(key => apresentacaoMap[key] === document.getElementById("descricaoApresentacao")?.value);
         let estado = document.getElementById("descricaoEstado").value;
-        estado = (estado === "COZ") ? "1" : "0";
+        estado = (estado === "COZ") ? "1"
+        :(estado === "PRE FRITO") ? "2"
+        :"0";
 
         const tipoConservacao = Object.keys(condicaoMap).find(key => condicaoMap[key] === document.getElementById("descricaoCondicao")?.value);
         const classificacao = converterClassificacaoParaCodigo(
@@ -26,9 +28,9 @@ document.getElementById("criarProduto")?.addEventListener("click", async () => {
         const camposNumericos = [
             especie,
             apresentacao,
+            classificacao,
             estado,
             tipoConservacao,
-            classificacao,
             pacote,
             caixa,
             embalagem
@@ -49,15 +51,15 @@ document.getElementById("criarProduto")?.addEventListener("click", async () => {
         }
 
         // Geração do código completo com padding para garantir o tamanho fixo
-        const codigoCompleto = `${especie} ${apresentacao} ${estado} ${tipoConservacao} ${classificacao.padStart(6, '0')} ${pacote.padStart(5, '0')} ${caixa.padStart(2, '0')}`;
+        const codigoCompleto = `${especie} ${apresentacao} ${classificacao.padStart(6, '0')} ${estado} ${tipoConservacao}  ${pacote.padStart(5, '0')} ${caixa.padStart(2, '0')}`;
 
         const produto = {
             codigoCompleto,
             especie,
             apresentacao,
+            classificacao,
             estado,
             tipoConservacao,
-            classificacao,
             pacote,
             caixa,
             embalagem,

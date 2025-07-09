@@ -49,6 +49,15 @@
             </div>
         </div>
 
+         <!-- Classificação -->
+        <div class="mb-3">
+            <label for="descricaoClassificacao" class="form-label">Classificação:</label>
+            <div class="input-group">
+                <input type="text" id="classificacaoMinima" class="form-control" placeholder="Mínimo (ex.:40)" maxlength="3" oninput="AtualizarTabelaReferencia()">
+                <input type="text" id="classificacaoMaxima" class="form-control" placeholder="Máximo (ex.:50)" maxlength="3" oninput="AtualizarTabelaReferencia()">
+            </div>
+        </div>
+
         <!-- Condição -->
         <div class="mb-3">
             <label for="descricaoEstado" class="form-label">Estado:</label>
@@ -61,6 +70,7 @@
             </div>
         </div>
 
+        
         <!-- Estado -->
         <div class="mb-3">
             <label for="descricaoCondicao" class="form-label">Tipo de Conservação:</label>
@@ -73,15 +83,6 @@
             </div>
         </div>
         
-
-        <!-- Classificação -->
-        <div class="mb-3">
-            <label for="descricaoClassificacao" class="form-label">Classificação:</label>
-            <div class="input-group">
-                <input type="text" id="classificacaoMinima" class="form-control" placeholder="Mínimo (ex.:40)" maxlength="3" oninput="AtualizarTabelaReferencia()">
-                <input type="text" id="classificacaoMaxima" class="form-control" placeholder="Máximo (ex.:50)" maxlength="3" oninput="AtualizarTabelaReferencia()">
-            </div>
-        </div>
 
         <!-- Pacote -->
         <div class="mb-3">
@@ -135,9 +136,9 @@
                 <tr>
                     <th>Produto primário</th>
                     <th>Apresentação</th>
+                    <th>Classificação </th>
                     <th>Estado</th>
                     <th>Tipo de Conservação</th>
-                    <th>Classificação</th>
                     <th>Pacote (g)</th>
                     <th>Caixa (Kg)</th>
                     <th>Tipo de embalagem</th>

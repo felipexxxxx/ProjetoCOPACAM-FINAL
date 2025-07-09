@@ -1,9 +1,8 @@
 const especieMap = { "01": "CAMARÃO" };
     const apresentacaoMap = {
-        "10": "DESCASCADO PUD TAIL ON TEMPERADO EMPANADO PRE FRITO",
-        "11": "DESCASCADO EVISCERADO TEMPERADO EMPANADO PRE FRITO",
-        "12": "DESCASCADO EVISCERADO TAIL ON TEMPERADO EMPANADO PRE FRITO",
-        "13": "SEM CABEÇA TEMPERADO EMPANADO PRE FRITO",
+        "10": "DESCASCADO TAIL ON TEMPERADO EMPANADO",
+        "11": "DESCASCADO EVISCERADO TEMPERADO EMPANADO",
+        "12": "DESCASCADO EVISCERADO TAIL ON TEMPERADO EMPANADO",
         "00": "IN NATURA",
         "01": "INTEIRO",
         "02": "SEM CABEÇA",
@@ -13,9 +12,10 @@ const especieMap = { "01": "CAMARÃO" };
         "06": "DESCASCADO PPV TAIL ON",
         "07": "DESCASCADO PED",
         "08": "DESCASCADO PED TAIL ON",
-        "09": "DESCASCADO PUD TEMPERADO EMPANADO PRE FRITO"
+        "09": "DESCASCADO TEMPERADO EMPANADO",
+        "13": "SEM CABEÇA TEMPERADO EMPANADO",
     };
-    const estadoMap = { "1": "COZ" };
+    const estadoMap = { "1": "COZ", "2": "PRE FRITO"};
     const condicaoMap = { "0": "IQF", "1": "IQF 1", "2": "IQF 2", "3": "IQF 3"};
     const pacoteMap = {
         "05000": "5kg",
@@ -48,15 +48,24 @@ function preencherFiltros() {
 }
 
 function preencherFiltroDinamicoEstado(dropdownId, inputId) {
-    const dropdown = document.getElementById(dropdownId);
-    dropdown.innerHTML = "";
+  const dropdown = document.getElementById(dropdownId);
+  dropdown.innerHTML = "";
+
+  /* gera todas as opções que existirem no mapa */
+  Object.values(estadoMap).forEach(valor => {
     const li = document.createElement("li");
-    li.innerHTML = `<a class="dropdown-item" href="#" onclick="event.preventDefault(); selecionarFiltro('${inputId}', 'COZ')">COZ</a>`;
+    li.innerHTML = `<a class="dropdown-item" href="#"
+        onclick="event.preventDefault(); selecionarFiltro('${inputId}', '${valor}')">${valor}</a>`;
     dropdown.appendChild(li);
-    const liLimpar = document.createElement("li");
-    liLimpar.innerHTML = `<a class="dropdown-item text-danger" href="#" onclick="event.preventDefault(); limparFiltro('${inputId}')">Limpar</a>`;
-    dropdown.appendChild(liLimpar);
-    document.getElementById(inputId).value = "";
+  });
+
+  /* opção Limpar */
+  const liLimpar = document.createElement("li");
+  liLimpar.innerHTML = `<a class="dropdown-item text-danger" href="#"
+        onclick="event.preventDefault(); limparFiltro('${inputId}')">Limpar</a>`;
+  dropdown.appendChild(liLimpar);
+
+  document.getElementById(inputId).value = "";
 }
 function limparFiltro(inputId) {
     document.getElementById(inputId).value = "";
